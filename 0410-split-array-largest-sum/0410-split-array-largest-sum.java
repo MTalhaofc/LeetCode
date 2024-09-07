@@ -1,27 +1,39 @@
 class Solution {
-    public int cntNoOfSplits(int []nums,int maxSum){
-        int noOfSplits=1,sum=0;
-        for(int x:nums){
-            if(sum+x<=maxSum) sum+=x;
-            else{
-                noOfSplits++;
-                sum=x;
-            }
-        }
-        return noOfSplits;
-    }
     public int splitArray(int[] nums, int k) {
-        int start=Integer.MIN_VALUE,end=0,mid=0;
-        for(int x:nums){
-            start=Math.max(start,x);
-            end+=x;
+         int start = 0;
+   int end = 0;
+   for (int i = 0; i < nums.length; i++) {
+    start = Math.max(start,nums[i]);
+    end += nums[i];
+}
+//binary search
+while (start < end) {
+    //try for mid as the potienta; answer
+    int mid = start + (end - start)/2;
+    //pieces in which we can divide it
+    int sum = 0;
+    int pieces = 1;
+    for( int num: nums){
+        if(sum + num > mid){
+            sum = num;
+            pieces++;
         }
-        while(start<=end){
-            mid = (start+end)/2;
-            int noOfSplits = cntNoOfSplits(nums,mid);
-            if(noOfSplits<=k) end=mid-1;
-            else start=mid+1;
+        else{
+            sum += num;
         }
-        return start;
+    }
+    
+    if(pieces > k){
+    start = mid +1;}
+    else{
+        end = mid;
+    }
+
+}
+
+
+
+
+    return end;
     }
 }
