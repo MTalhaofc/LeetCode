@@ -1,25 +1,23 @@
 class Solution {
     public double myPow(double x, int n) {
-        double ans =1;
-        if(n>0){
-        for(int i =0 ; i<n;i++){
-            ans = ans*x;
         
-         } }
-         else if(n<0){
-            n = n*-1;
- for(int i =0 ; i<n;i++){
-            ans = ans/x;
+        if(n < 0){
+            n = -n;
+            x = 1 / x;
+        }
         
-         } 
+        double pow = 1;
+        
+        while(n != 0){
+            if((n & 1) != 0){
+                pow *= x;
+            } 
+                
+            x *= x;
+            n >>>= 1;
             
-         }
-         if(n==0){
-            return 1;
-         }
-         if (n==-2147483648){
-            return  0.00000;
-         }
-    return ans;
+        }
+        
+        return pow;
     }
 }
