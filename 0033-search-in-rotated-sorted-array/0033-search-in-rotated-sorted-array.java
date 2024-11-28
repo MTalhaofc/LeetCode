@@ -35,13 +35,7 @@ while(start <= end){
         start = mid +1;
     }
 }
-
-
-                return -1;
-            
-
-
-
+return -1;
     }
  int binarysearch(int[] nums , int target, int start, int end){
 while(start <= end){
